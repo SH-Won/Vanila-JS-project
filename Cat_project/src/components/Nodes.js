@@ -25,6 +25,9 @@ export default function Nodes({$app,initialState,onClick}){
         const $node = e.target.closest('.Node');
         if($node){
             const {nodeId} = $node.dataset;
+            if(!nodeId){
+                
+            }
         }
     })
     this.render();

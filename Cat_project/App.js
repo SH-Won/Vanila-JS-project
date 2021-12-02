@@ -112,6 +112,7 @@ export default function App($app){
         $app,
         initialState : this.state.selectedFilePath,
     })
+    
     this.setState = (nextState) =>{
         this.state = nextState;
         nodes.setState({
