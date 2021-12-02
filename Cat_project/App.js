@@ -1,8 +1,8 @@
-import Nodes from './components/Nodes';
-import Breadcrumb from './components/Breadcrumb';
-import {request} from './utills/api'
-import ImageView from './components/ImageView';
-import Loading  from './utills/Loading';
+import Nodes from './components/Nodes.js';
+import Breadcrumb from './components/Breadcrumb.js';
+import {request} from './utills/api.js'
+import ImageView from './components/ImageView.js';
+import Loading  from './utills/Loading.js';
 const cache = {
 
 }
@@ -111,6 +111,9 @@ export default function App($app){
     const imageView = new ImageView({
         $app,
         initialState : this.state.selectedFilePath,
+        onClick : () =>{
+            
+        }
     })
     
     this.setState = (nextState) =>{

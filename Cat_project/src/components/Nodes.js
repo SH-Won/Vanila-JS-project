@@ -26,7 +26,12 @@ export default function Nodes({$app,initialState,onClick}){
         if($node){
             const {nodeId} = $node.dataset;
             if(!nodeId){
-                
+                this.onBackClick();
+                return;
+            }
+            const selectedNode = this.state.nodes.find(node => node.id === nodeId);
+            if(selectedNode){
+               this.onClick(selectedNode);
             }
         }
     })
