@@ -1,3 +1,5 @@
+import {getItem,setItem} from '../utils/storage';
+import { routeChange } from '../utils/router';
 export default function selectedOptions({$target,initialState}){
     const $component = document.createElement("div");
     $target.appendChild($component);
@@ -30,4 +32,39 @@ export default function selectedOptions({$target,initialState}){
         }
     }
     this.render();
+    $component.addEventListener('change',e =>{
+        if(e.target.tagName ==='INPUT'){
+            try{
+                const nextQuantity = parseInt(e.target.value);
+                const nextSelectedOptions = [...this.state.selectedOptions]
+                if(typeof nextQuantity === 'number'){
+                    const {product} =this.state;
+                    const optionId = parseInt(e.target.dataset.optionId);
+                    const option = product.productOptions.find(option => option.id === optionId);
+                    const selectedOptionIndex = nextSelectedOptions.findIndex(selectedOption => selectedOption.optionId === optionId);
+                    nextSelectedOptions[selectedOptionIndex].quantity = option.stock >= nextQuantity ? nextQuantity : option.stock;
+                    
+                    this.setState({
+                        ...this.state,
+                        selectedOptions : nextSelectedOptions,
+                    })
+                }
+
+            }catch(e){
+               console.log(e);
+            }
+        }
+    })
+    $component.addEventListener('click',e=>{
+        const {selectedOptions} = this.state
+        if(e.target.className ==='OrderButton'){
+            const cartData = getItem('products_cart',[]);
+            setItem('products_cart',cartData.concat(selectedOptions.map(selectedOption =>({
+                productId : selectedOption.productId,
+                optionId : selectedOption.optionId,
+                quantity: selectedOption.quantity
+            }))))
+            routeChange('/cart')
+        }
+    })
 }

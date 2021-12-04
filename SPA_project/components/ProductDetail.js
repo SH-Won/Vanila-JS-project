@@ -1,5 +1,6 @@
 import SelectedOptions from './SelectedOptions';
 export default function ProductDetail({$target,initialState}){
+    let isInitialized = false;
     this.state = initialState;
     const $productDetail = document.createElement('div');
     $productDetail.className = 'ProductDetail';
@@ -17,6 +18,7 @@ export default function ProductDetail({$target,initialState}){
     }
     this.render = () =>{
         const {product} = this.state;
+        if(!isInitialized){
         $productDetail.innerHTML =`
         <img src="${product.imageUrl}">
         <div class="ProductDetail__info">
@@ -40,6 +42,8 @@ export default function ProductDetail({$target,initialState}){
                 selectedOptions:this.state.selectedOption,
             }
         })
+        isInitialized = true;
+    }
     }
     this.render();
     $productDetail.addEventListener('change',e=>{
