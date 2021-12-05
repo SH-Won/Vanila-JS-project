@@ -8,10 +8,11 @@ export default function ProductListPage({$target,}){
     $page.innerHTML = `<h1>상품 목록</h1>`
 
     this.render = () =>{
-        $target.appendChild(this.$page);
+        $target.appendChild($page);
     }
     this.setState = (nextState) =>{
         this.state = nextState;
+        this.render();
         productList.setState(this.state);
     }
     const fetchProducts = async () =>{

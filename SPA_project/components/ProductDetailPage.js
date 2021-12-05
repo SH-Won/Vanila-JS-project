@@ -1,5 +1,5 @@
-import { request } from '../utils/api';
-import ProductDetail from './ProductDetail';
+import { request } from '../utils/api.js';
+import ProductDetail from './ProductDetail.js';
 export default function ProductDetailPage({$target,productId}){
     this.state = {
         productId,

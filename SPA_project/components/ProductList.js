@@ -28,7 +28,7 @@ export default function ProductList({$target,initialState}){
         const $li = e.target.closest('li');
         const {productId} = $li.dataset;
         if(productId){
-            routeChange(`/products/${productId}`);
+            routeChange(`/web/products/${productId}`);
         }
     })
 }
