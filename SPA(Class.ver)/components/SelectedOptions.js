@@ -14,7 +14,7 @@ export default class SelectedOptions{
                 const {product,selectedOptions} = this.state
                 const nextSelectedOptions = [...selectedOptions];
                 const optionId = parseInt(e.target.dataset.optionId);
-                const productOption = product.productOptions.find(option => option.id = optionId);
+                const productOption = product.productOptions.find(option => option.id === optionId);
                 const selectedOptionIdx = nextSelectedOptions.findIndex(option => option.optionId === optionId);
                 console.log(productOption.stock);
                 nextSelectedOptions[selectedOptionIdx].quantity = productOption.stock >= nextQuantity ? nextQuantity : productOption.stock;

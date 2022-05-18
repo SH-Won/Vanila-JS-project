@@ -43,7 +43,6 @@ export default function selectedOptions({$target,initialState}){
                     const option = product.productOptions.find(option => option.id === optionId);
                     const selectedOptionIndex = nextSelectedOptions.findIndex(selectedOption => selectedOption.optionId === optionId);
                     nextSelectedOptions[selectedOptionIndex].quantity = option.stock >= nextQuantity ? nextQuantity : option.stock;
-                    console.log('3');
                     this.setState({
                         ...this.state,
                         selectedOptions : nextSelectedOptions,
